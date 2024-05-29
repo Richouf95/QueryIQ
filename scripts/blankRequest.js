@@ -138,10 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
 submit.addEventListener('click', () => {
     const q = {...query, id: uuidv4(), createdAt: new Date()};
     if (!localStorage.getItem('queryiq')) 
-        localStorage.setItem('queryiq', JSON.stringify(q));
+        localStorage.setItem('queryiq', JSON.stringify([q]));
     else {
-        const history = JSON.parse(localStorage.getItem('queryiq'));
-        console.log("=> History :\n", history)
+        const old = JSON.parse(localStorage.getItem('queryiq'));
+        localStorage.setItem('queryiq', JSON.stringify([...old, q]));
+        // const history = JSON.parse(localStorage.getItem('queryiq'));
+        // console.log("=> History :\n", history)
     }
     // console.log(q)
 });
