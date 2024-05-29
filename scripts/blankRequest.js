@@ -65,14 +65,24 @@
 //     }
 // }
 
-const submit = document.getElementById('headerSubmitBtn');
+const uniqueId = uuidv4();
+console.log(uniqueId)
 
-let query = {
+const submit = document.getElementById('headerSubmitBtn');
+const userPrompt = document.getElementById('userPrompt');
+
+export let query = {
     keyWord: {query: "", casse: false},
     onSite: "",
     documentType: "",
     date: ""
 }
+
+function formatPrompt (data) {
+    let prompt = `${data.keyWord.query && `intext:${data.keyWord.query}`} ${data.onSite && `site:${data.onSite}`} ${data.documentType && `filetype:${data.documentType}`} ${data.date && `after:${data.date}`}`;
+    userPrompt.value = prompt
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
@@ -96,12 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const value = event.target.value;
         // displayData(event.target.id, event.target.value);
         query.keyWord.query = value;
+        formatPrompt(query)
     });
 
     form.elements['onSite'].addEventListener('change', (event) => {
         const value = event.target.value;
         // displayData(event.target.id, event.target.value);
         query.onSite = value;
+        formatPrompt(query)
     });
 
     // Radios for 'ressourceType'
@@ -111,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const value = event.target.value;
             // displayData(event.target.id, event.target.value);
             query.documentType = value;
+            formatPrompt(query)
         });
     });
 
@@ -118,9 +131,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const value = event.target.value;
         // displayData(event.target.id, event.target.value);
         query.date = value;
+        formatPrompt(query)
     });
 });
 
 submit.addEventListener('click', () => {
-    console.log(query)
+    const q = {...query, id: uuidv4(), createdAt: new Date()};
+    if (!localStorage.getItem('queryiq')) 
+        localStorage.setItem('queryiq', JSON.stringify(q));
+    else {
+        const history = JSON.parse(localStorage.getItem('queryiq'));
+        console.log("=> History :\n", history)
+    }
+    // console.log(q)
 });
