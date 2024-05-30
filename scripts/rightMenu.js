@@ -1,3 +1,5 @@
+import {historyContent} from './popupContent.js';
+
 function updateRighttMenuContent(data) {
     const rightMenuContent = document.getElementById('query-history');
     rightMenuContent.innerHTML = `
@@ -10,21 +12,48 @@ function updateRighttMenuContent(data) {
     data.forEach((i, index) => {
         const div = document.createElement('div');
         div.classList.add('historyItem');
+        const historyDate = new Date(i.createdAt);
+        const formattedDate = historyDate.toLocaleDateString('fr-FR', { 
+            day: '2-digit', 
+            month: '2-digit', 
+            year: 'numeric'
+        });
+        const formattedTime = historyDate.toLocaleTimeString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
         div.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; background-color: #1F1F1F; border-radius: 10px; margin: 10px; padding:20px 10px">
             <div>
                 <p>Query: <span style="background-color: #303134; padding: 5px 10px; border-radius: 20px;">${i.keyWord.query}</span></p>
-                <p style="margin-top: 15px;">Created at : <span style="background-color: #303134; padding: 5px 10px; border-radius: 20px;">${i.date}</span></p> 
+                <p style="margin-top: 15px;">Created at : <span style="background-color: #303134; padding: 5px 10px; border-radius: 20px;">${formattedDate} ${formattedTime}</span></p> 
             </div>
-            <div><img src="../assets/seemore.png" alt="see more" style='width:20px' /></div>
+            <div>
+                <div><img src="../assets/seemore.png" alt="see more" style='width:20px' class='seeMoreIcon' id="history_${i.id}" /></div>
+                <div><img src="../assets/delete.png" alt="see more" style='width:20px' class='' id="delete_${i.id}" onclick="(() => {
+                    const store = JSON.parse(localStorage.getItem('queryiq'));
+                    const without = store.filter(x => x.id !== '${i.id}');
+                    localStorage.removeItem('queryiq');
+                    localStorage.setItem('queryiq', JSON.stringify(without));
+                    const menuContent = document.getElementById('query-history');
+                    menuContent.remove();
+                })()" /></div>
+            </div>
         </div>
         `;
-        // console.log(item)
         rightMenuContent.appendChild(div);
-    })
+    });
 
     // Ajoutez l'écouteur d'événement ici pour appeler updateLeftMenuContent lorsque l'image est cliquée
-    document.getElementById('refreshIconhistory').addEventListener('click', updateRighttMenuContent);
+    document.getElementById('refreshIconhistory').addEventListener('click', () => updateRighttMenuContent(data));
+
+    // Sélectionner tous les éléments avec la classe 'seeMoreIcon' et ajouter un écouteur d'événements
+    const seeMoreIcons = document.querySelectorAll('.seeMoreIcon');
+    seeMoreIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            historyContent(icon)
+        });
+    });
 }
 
 // Right btn actions
@@ -35,8 +64,6 @@ document.getElementById('rightMenuToggleButton').addEventListener('click', funct
 
     const history = JSON.parse(localStorage.getItem('queryiq'));
 
-    console.log("=> History from right menu :\n", history)
-
     if (leftMenu.contains(menuContent)) {
         menuContent.remove();
         leftMenuBtn.style.rotate = "0deg";
@@ -44,6 +71,7 @@ document.getElementById('rightMenuToggleButton').addEventListener('click', funct
     } else {                
         const rightMenuContent = document.createElement('div');
         rightMenuContent.id = 'query-history';
+        rightMenuContent.classList.add('scrollstyle');
         leftMenu.appendChild(rightMenuContent);
         updateRighttMenuContent(history);
         leftMenuBtn.style.rotate = "180deg";

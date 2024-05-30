@@ -63,10 +63,9 @@ document.getElementById('leftMenuToggleButton').addEventListener('click', functi
     } else {
         const leftMenuContent = document.createElement('div');
         leftMenuContent.id = 'query-tokens';
+        leftMenuContent.classList.add('scrollstyle')
         leftMenu.appendChild(leftMenuContent);
         updateLeftMenuContent();
         leftMenuBtn.style.rotate = "0deg";
     }
 });
-
-console.log(query);

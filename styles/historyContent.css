@@ -1,0 +1,71 @@
+#darkBackground {
+    background-color: rgba(0, 0, 0, 0.763);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#popupContent {
+    width: 30rem;
+    height: 32rem;
+    background-color: white;
+    border-radius: 20px;
+}
+
+#historyContentTitle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#historyContentTitle img {
+    width:20px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius:50%;
+    padding:5px;
+    cursor: pointer;
+}
+
+#divAction {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0px;
+}
+
+#divAction button {
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+#actionUpdate {
+    background-color: #303134;
+    color: white;
+}
+
+#actionResearch {
+    background-color: #D4D43D;
+}
+
+#updateKeyWorkImput, #onSiteInput, #pubDateImput {
+ width: 80%;
+ padding: 5px;
+ border-radius: 10px;
+ margin-bottom: 10px;
+}
+
+#queryImput label, #onSiteImput label, #ressourceTypeImput label, #publishDateImput label {
+    font-size: 1.2em;
+    color: black;
+}
+#popupContent::-webkit-scrollbar
+{
+	width: 0px;
+    height: 0;
+	background-color: #1F1F1F;
+}

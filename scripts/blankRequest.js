@@ -17,7 +17,6 @@
 //     date: ""
 // }
 
-// console.log(query);
 
 // expression.addEventListener('change', (e) => {
 //     e.preventDefault();
@@ -65,9 +64,6 @@
 //     }
 // }
 
-const uniqueId = uuidv4();
-console.log(uniqueId)
-
 const submit = document.getElementById('headerSubmitBtn');
 const userPrompt = document.getElementById('userPrompt');
 
@@ -87,16 +83,10 @@ function formatPrompt (data) {
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
 
-    // Fonction pour afficher les données récupérées
-    const displayData = (id, value) => {
-        console.log(`ID: ${id}, Value: ${value}`);
-    };
-
     // Ajouter des écouteurs de changement sur les éléments du formulaire
     form.elements['casse'].forEach(radio => {
         radio.addEventListener('change', (event) => {
             const value = event.target.value;
-            // displayData(event.target.id, event.target.value);
             if (value === 'no') query.keyWord.casse = false;
             if (value === 'yes') query.keyWord.casse = true;
         });
@@ -104,14 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.elements['keyWord'].addEventListener('change', (event) => {
         const value = event.target.value;
-        // displayData(event.target.id, event.target.value);
         query.keyWord.query = value;
         formatPrompt(query)
     });
 
     form.elements['onSite'].addEventListener('change', (event) => {
         const value = event.target.value;
-        // displayData(event.target.id, event.target.value);
         query.onSite = value;
         formatPrompt(query)
     });
@@ -121,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ressourceTypeRadios.forEach(radio => {
         radio.addEventListener('change', (event) => {
             const value = event.target.value;
-            // displayData(event.target.id, event.target.value);
             query.documentType = value;
             formatPrompt(query)
         });
@@ -129,21 +116,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.elements['pubDate'].addEventListener('change', (event) => {
         const value = event.target.value;
-        // displayData(event.target.id, event.target.value);
         query.date = value;
         formatPrompt(query)
     });
 });
 
-submit.addEventListener('click', () => {
+export function submitSearch (queryId, newData) {
     const q = {...query, id: uuidv4(), createdAt: new Date()};
     if (!localStorage.getItem('queryiq')) 
         localStorage.setItem('queryiq', JSON.stringify([q]));
     else {
-        const old = JSON.parse(localStorage.getItem('queryiq'));
-        localStorage.setItem('queryiq', JSON.stringify([...old, q]));
-        // const history = JSON.parse(localStorage.getItem('queryiq'));
-        // console.log("=> History :\n", history)
+        let old = JSON.parse(localStorage.getItem('queryiq'));
+        if (queryId && newData) {
+            old.map(i => {
+                if (i.id == queryId) {
+                    i.keyWord.query = newData.keyWord.query;
+                    i.keyWord.casse = newData.keyWord.casse;
+                    i.onSite = newData.onSite;
+                    i.documentType = newData.documentType;
+                    i.data = newData.Date;
+                }
+            })
+            localStorage.removeItem('queryiq');
+            localStorage.setItem('queryiq', JSON.stringify(old));
+        } else {
+            localStorage.setItem('queryiq', JSON.stringify([...old, q]));
+        }
     }
-    // console.log(q)
-});
+
+    var motCle = 'site:codeloccol.org';
+    if (newData) {
+        let prompt = `${newData.keyWord.query && `intext:${newData.keyWord.query}`} ${newData.onSite && `site:${newData.onSite}`} ${newData.documentType && `filetype:${newData.documentType}`} ${newData.date && `after:${newData.date}`}`;
+        var url = 'https://www.google.com/search?q=' + encodeURIComponent(prompt);
+        window.open(url, '_blank');
+        return;
+    }
+    var url = 'https://www.google.com/search?q=' + encodeURIComponent(userPrompt.value);
+    window.open(url, '_blank');
+}
+
+submit.addEventListener('click', () => submitSearch());
+
+// function ouvrirRechercheGoogle() {
+//     alert('hehe')
+//     // Remplacez 'votre mot clé' par le mot clé que vous souhaitez rechercher
+    
+// }
