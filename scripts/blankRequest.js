@@ -75,7 +75,7 @@ export let query = {
 }
 
 function formatPrompt (data) {
-    let prompt = `${data.keyWord.query && `intext:${data.keyWord.query}`} ${data.onSite && `site:${data.onSite}`} ${data.documentType && `filetype:${data.documentType}`} ${data.date && `after:${data.date}`}`;
+    let prompt = `${data.keyWord.query && data.keyWord.casse ? `intext:"${data.keyWord.query}"` : `intext:${data.keyWord.query}`} ${data.onSite && `site:${data.onSite}`} ${data.documentType && `filetype:${data.documentType}`} ${data.date && `after:${data.date}`}`;
     userPrompt.value = prompt
 }
 
@@ -146,7 +146,7 @@ export function submitSearch (queryId, newData) {
 
     var motCle = 'site:codeloccol.org';
     if (newData) {
-        let prompt = `${newData.keyWord.query && `intext:${newData.keyWord.query}`} ${newData.onSite && `site:${newData.onSite}`} ${newData.documentType && `filetype:${newData.documentType}`} ${newData.date && `after:${newData.date}`}`;
+        let prompt = `${data.keyWord.query && data.keyWord.casse ? `intext:"${data.keyWord.query}"` : `intext:${data.keyWord.query}`} ${newData.onSite && `site:${newData.onSite}`} ${newData.documentType && `filetype:${newData.documentType}`} ${newData.date && `after:${newData.date}`}`;
         var url = 'https://www.google.com/search?q=' + encodeURIComponent(prompt);
         window.open(url, '_blank');
         return;
@@ -156,9 +156,3 @@ export function submitSearch (queryId, newData) {
 }
 
 submit.addEventListener('click', () => submitSearch());
-
-// function ouvrirRechercheGoogle() {
-//     alert('hehe')
-//     // Remplacez 'votre mot clé' par le mot clé que vous souhaitez rechercher
-    
-// }

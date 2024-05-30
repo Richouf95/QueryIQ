@@ -15,9 +15,20 @@ function updateLeftMenuContent() {
         <h5 style="font-size: 20px; margin: 20px 0px 10px 20px">Query :</h5>
         <hr style="width:90%; margin: auto">
         <div style='padding:10px'></div>
-        <span style="background: #1F1F1F; padding: 5px 10px; margin: 40px 10px; border-radius: 20px">${query.keyWord.query}</span>
+        <div id="queryPresentation" style="padding-left: 20px"></div>
     `;
     if (query.keyWord.query !== "") leftMenuContent.appendChild(q);
+
+    if (query.keyWord.casse) {
+        const queryPresentation = document.getElementById('queryPresentation');
+        console.log(queryPresentation)
+        const splited = query.keyWord.query.split(' ');
+        splited.forEach(item => {
+            const token = `<span style="background: #1F1F1F; padding: 5px 10px; margin: 0px 2px; border-radius: 20px">${item}</span>`
+            queryPresentation.innerHTML += token;
+        })
+        // queryPresentation.appendChild(`<span style="background: #1F1F1F; padding: 5px 10px; margin: 40px 10px; border-radius: 20px">${query.keyWord.query}</span>`)
+    }
 
     const s = document.createElement('div');
     s.innerHTML = `
