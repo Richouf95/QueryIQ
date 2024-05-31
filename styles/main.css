@@ -1,202 +1,89 @@
-main {
-    flex: 1;
-    padding: 10px 0px;
+#divTitle {
     display: flex;
-}
-
-#main-container {
-    background-color: #303134;
-    height: 95%;
-    width: 100%;
-    border-radius: 10px;
-    padding: 10px;
-    flex: 1;
-    /* background-color: red; */
-}
-
-.etape {
-    min-width: 100%;
-    min-height: 100%;
-}
-
-#query-component {
-    /* background: green; */
-    margin: 10px 50px;
-    height: 95%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    justify-content: center;
 }
 
-#query-component input {
-    padding: 10px;
+#grosTitre {
+    text-align: center;
+    font-size: 4rem;
+    margin: 40px 0px;
+    font-weight: 900;
+    color: #303134;
+}
+
+#grosTitre span {
+    color: black;
+}
+
+#tryIt {
+    padding: 10px 20px;
+    width: 230px;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 20px;
+    background-color: #303134;
+    color: white;
     border: none;
     border-radius: 10px;
-    width: 60%;
+    font-size: 2rem;
+    text-decoration: none;
+    text-align: center;
 }
 
-.etape {
-    height: 100%;
+#queryPage {
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-label {
-    font-size: 1.5rem;
+#queryPage img {
+    width: 80%;
+    position: relative;
+    margin: auto;
 }
 
-.questions {
-    font-size: 2rem;
+#presentation {
+    padding-top: 300px;
+    background-color: #d4d43d5b;
+    margin-top: -300px;
 }
 
-.query-btn {
-    padding: 10px;
-    width: 100px;
-    border-radius: 10px;
-    margin: 10px 10px;
-    background: #6A6A6C;
-}
-
-/* 
-    Buttons menu 
-*/
-
-#left-menu img, #right-menu img {
-    width: 40px;
-    border-radius: 50%;
-    z-index: 2;
-    rotate: 180deg;
-    cursor: pointer;
-}
-
-#leftMenuToggleButton {
-    margin-right: -20px;
-}
-
-#right-menu img {
-    margin-left: -20px;
-    rotate: 0deg;
-}
-
-
-/*
-    Gestion des menus
-*/
-
-#left-menu, #right-menu {
+#barreDeRecherche {
     display: flex;
-    align-items: center;
-}
-
-#left-menu {
-    flex-direction: row-reverse;
-}
-
-#query-tokens, #query-history {
-    height: 100%;
-    width: 300px;
-    background: #303134;
-}
-
-#query-tokens {
-    border-radius: 0px 10px 10px 0px;
-}
-
-#query-history {
-    border-radius: 10px 0px 0px 10px;
-}
-
-#etape0Content {
-    max-width: 600px;
-    display: flex;
-    flex-wrap: wrap;
+    max-width: 80%;
     justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 50px;
 }
 
-.radioLabel {
-    background-color: #1F1F1F;
+#barreDeRecherche h3, #querParams h3 {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+#barreDeRecherche img {
+    width: 600px;
+    height: 75px;
+    padding: 100px 0;
+}
+
+#querParams {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    margin: auto;
+    gap: 50px;
+    padding-top: 20px;
+}
+
+#querParams img {
     width: 250px;
-    height: 150px;
-    margin: 10px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform .2s;
 }
 
-button {
-    cursor: pointer;
-    font-size: 0.9em;
+#paramDescription {
+    width: 500px;
 }
-
-a {
-    text-decoration: none;
-    font-size: 1.5em;
-}
-
-.radioLabel:hover {
-    transform: scale(1.1);
-}
-
-.next {
-    background-color: rgb(212, 212, 61);
-}
-
-#query-history, #query-tokens {
-    overflow: scroll;
-}
-
-.scrollstyle::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #1F1F1F;
-}
-
-.scrollstyle::-webkit-scrollbar
-{
-	width: 0px;
-    height: 0;
-	background-color: #1F1F1F;
-}
-
-.scrollstyle::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #303134;
-}
-
-/* #etape0Content div {
-    background-color: red;
-    width: 270px;
-    height: 180px;
-    margin: 5px;
-} */
-
-/* 
-.radioEtape {
-    background-color: blue;
-    max-width: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px; 
-}
-
-.radioLabel {
-    width: 150px;
-    height: 100px;
-    background: orange;
-    border-radius: 20px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: transform .2s;
-}
-
-.radioLabel:hover {
-    transform: scale(1.1);
-} */

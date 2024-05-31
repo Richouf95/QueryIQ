@@ -1,141 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/body.css">
     <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/query/query_footer.css">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/historyContent.css">
     <title>QueryIQ</title>
 </head>
-
 <body>
     <!-- Header -->
     <header>
-        <div id="header-container">
-            <div>
-                <h1>QueryIQ</h1>
-            </div>
-            <div id="header-input-div">
-                <input disabled type="text" name="" id="userPrompt" placeholder="Your prompt will appear here...">
-                <button id="headerSubmitBtn">Submit</button>
-            </div>
+        <div>
+            <h1>QueryIQ</h1>
         </div>
     </header>
 
-    <!-- Main -->
-    <main style="min-height: 80%; max-height: 80%;">
-        <div id="left-menu">
-            <img id="leftMenuToggleButton" src="assets/row.png" alt="row">
-        </div>
-        <div id="main-container">
-            <div id="query-component">
-                <form style="min-width: 100%; min-height: 100%; overflow-y: hidden; scrollbar-width: none; ">
-                    <!-- Search key word -->
-                    <div class="etape" id="etape1">
-                        <label class="questions">Terms of your research?</label><br>
-                        <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                            <span style="font-size: 1.5rem;">Termes exact ?</span>
-                            <div style="display: flex; align-items: center; margin-left: 10px; margin-right: 10px;">
-                                <label for="yesCasse">Yes</label>
-                                <input style="margin-right: 5px; margin-left: 5px;" type="radio" name="casse"
-                                    id="yesCasse" value="yes">
-                            </div>
-                            <div style="display: flex; align-items: center; font-size: 0.5rem;">
-                                <label for="noCasse">No</label>
-                                <input style="margin-right: 5px; margin-left: 5px;" type="radio" name="casse"
-                                    id="noCasse" value="no">
-                            </div>
-                        </div>
-                        <input type="text" id="keyWord">
-                        <div style="display: flex; justify-content: space-between; width: 60%;">
-                            <div>
-                                <button class="query-btn next"><a class="etape" href="#etape2">Next</a></button>
-                            </div>
-                            <div><button class="query-btn"><a  href="#etape2">Skip</a></button></div>
-                        </div>
+    <main>
+        <div id="divTitle">
+            <h2 id="grosTitre">Find fast, search smart <span>with QueryIQ</span></h2>
+            <a href="query.html" id="tryIt">Try it</a>
+        <div id="queryPage">
+            <img  src="assets/queryPage.png" alt="">
+            <div id="presentation">
+                <div id="barreDeRecherche">
+                    <div><h3>Create customised prompts for smart search</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias placeat tenetur consequuntur ea nesciunt laborum explicabo laudantium, iusto fuga, quisquam adipisci at et quas voluptas officiis itaque, eum nostrum totam!</p></div>
+                    <div><img src="assets/barreDeRecherche.png" alt=""></div>
+                </div>
+                <div id="querParams">
+                    <div>
+                        <img src="assets/queryParams.png" alt="">
                     </div>
+                    <div>
+                        <h3>View the parameters <br>of your query </h3>
+                        <p id="paramDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem provident nesciunt quaerat non incidunt possimus dolor eveniet beatae quam sit, praesentium accusamus vitae. Suscipit vel minima aliquam veniam incidunt quo quaerat recusandae voluptas quam, molestiae magnam consequuntur maxime, harum accusamus dolorum, sit maiores blanditiis assumenda dolorem ipsam! Officiis, assumenda consectetur!</p>
+                    </div>
+                </div>
+                <div id="querParams">
+                    <div>
+                        <h3>View your queries history</h3>
+                        <p id="paramDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem provident nesciunt quaerat non incidunt possimus dolor eveniet beatae quam sit, praesentium accusamus vitae. Suscipit vel minima aliquam veniam incidunt quo quaerat recusandae voluptas quam, molestiae magnam consequuntur maxime, harum accusamus dolorum, sit maiores blanditiis assumenda dolorem ipsam! Officiis, assumenda consectetur!</p>
+                    </div>
+                    <div>
+                        <img src="assets/queryHistory.png" alt="">
+                    </div>
+                </div>
 
-                    <!-- On some site -->
-                    <div class="etape" id="etape2">
-                        <label class="questions">On some site ?</label><br>
-                        <input type="text" id="onSite">
-                        <div style="display: flex; justify-content: space-between; width: 60%;">
-                            <div>
-                                <button class="query-btn"><a  href="#etape1">Previous</a></button>
-                                <button class="query-btn next"><a class="etape" href="#etape3">Next</a></button>
-                            </div>
-                            <div><button class="query-btn"><a  href="#etape3">Skip</a></button></div>
-                        </div>
-                    </div>
-
-                    <!-- Document -->
-                    <div class="etape" id="etape3">
-                        <span class="questions">Which type of ressource are you searching for ?</span>
-                        <!-- etape0Content -->
-                        <div id="etape0Content">
-                            <div style="display: flex; justify-content: center;">
-                                <div
-                                    style="display: flex; flex-direction: column; justify-content: center; margin: 10px;">
-                                    <img src="assets/pdf.png" alt="pdfImage" width="100" style="border-radius: 20px;">
-                                    <input
-                                        style="text-align: center; width: 100%; margin-top: 20px; transform: scale(1.5);"
-                                        type="radio" id="pdf" name="ressourceType" value="pdf">
-                                </div>
-                                <div
-                                    style="display: flex; flex-direction: column; justify-content: center; margin: 10px;">
-                                    <img src="assets/doc.png" alt="docImage" width="100" style="border-radius: 20px;">
-                                    <input
-                                        style="text-align: center; width: 100%; margin-top: 20px; transform: scale(1.5);"
-                                        type="radio" id="doc" name="ressourceType" value="doc">
-                                </div>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; width: 100%;">
-                                <div>
-                                    <button class="query-btn"><a  href="#etape2">Previous</a></button>
-                                    <button class="query-btn next"><a class="etape" href="#etape4">Next</a></button>
-                                </div>
-                                <div><button class="query-btn"><a  href="#etape4">Skip</a></button></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pubish date-->
-                    <div class="etape" id="etape4">
-                        <label class="questions">Publication date</label><br>
-                        <input type="date" id="pubDate" style="width: 200px;">
-                        <div style="display: flex; justify-content: space-between; width: 60%;">
-                            <div>
-                                <button class="query-btn"><a  href="#etape3">Previous</a></button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
             </div>
-        </div>
-        <div id="right-menu">
-            <img id="rightMenuToggleButton" src="assets/row.png" alt="row">
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <h2>Developed by Wouri Chouf</h2>
+        <h1 style="color: white;">Developed by Wouri Chouf</h1>
     </footer>
-
-<!-- <div>
-    <h5>Query :</h5>
-    <hr>
-    <span>${query.keyWord.query}</span>
-</div> -->
-
-    <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>
-    <script type="module" src="scripts/blankRequest.js"></script>
-    <script type="module" src="scripts/leftMenu.js"></script>
-    <script type="module" src="scripts/rightMenu.js"></script>
-    <script type="module" src="scripts/popupContent.js"></script>
 </body>
 </html>

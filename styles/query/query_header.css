@@ -1,0 +1,44 @@
+header {
+    height: 60px;
+    background-color: #303134;
+}
+
+#header-container {
+    display: flex;
+    height: 60px;
+    width: 80%;
+    margin: auto;    
+    align-items: center;
+}
+
+header a {
+    margin: 0;
+    color: white;
+}
+
+#header-input-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+header input {
+    width: 70%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.5em;
+}
+
+header input::placeholder {
+    color: white;
+    font-size: 15px;
+}
+
+#headerSubmitBtn {
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 150px;
+    background-color: rgb(212, 212, 61);
+}
