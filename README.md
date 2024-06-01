@@ -1,5 +1,11 @@
 # QueryIQ
 
+## Technologies used
+
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
 ## Description
 
 QueryIQ is an intuitive web application designed to improve the efficiency and accuracy of Google searches. It allows users to perform advanced searches using specific filters, save and view their search history, and edit and delete previous searches. QueryIQ simplifies the use of advanced online search tools and makes these features more accessible.
