@@ -15,7 +15,6 @@ a {
     border-radius: 10px;
     padding: 10px;
     flex: 1;
-    /* background-color: red; */
 }
 
 .etape {
@@ -24,7 +23,6 @@ a {
 }
 
 #query-component {
-    /* background: green; */
     margin: 10px 50px;
     height: 95%;
     display: flex;
@@ -174,33 +172,3 @@ a {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #303134;
 }
-
-/* #etape0Content div {
-    background-color: red;
-    width: 270px;
-    height: 180px;
-    margin: 5px;
-} */
-
-/* 
-.radioEtape {
-    background-color: blue;
-    max-width: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px; 
-}
-
-.radioLabel {
-    width: 150px;
-    height: 100px;
-    background: orange;
-    border-radius: 20px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: transform .2s;
-}
-
-.radioLabel:hover {
-    transform: scale(1.1);
-} */
