@@ -17,7 +17,7 @@ function updateLeftMenuContent() {
         <div style='padding:10px'></div>
         <div id="queryPresentation" style="padding-left: 20px"></div>
     `;
-    if (query.keyWord.query !== "") leftMenuContent.appendChild(q);
+    if (query.keyWord.query !== "" | false | null) leftMenuContent.appendChild(q);
 
     if (query.keyWord.casse) {
         const queryPresentation = document.getElementById('queryPresentation');
@@ -28,6 +28,9 @@ function updateLeftMenuContent() {
             queryPresentation.innerHTML += token;
         })
         // queryPresentation.appendChild(`<span style="background: #1F1F1F; padding: 5px 10px; margin: 40px 10px; border-radius: 20px">${query.keyWord.query}</span>`)
+    } else {
+        const queryPresentation = document.getElementById('queryPresentation');
+        queryPresentation.innerHTML = `<span style="background: #1F1F1F; padding: 5px 10px; margin: 0px 2px; border-radius: 20px">${query.keyWord.query}</span>`
     }
 
     const s = document.createElement('div');
@@ -48,14 +51,23 @@ function updateLeftMenuContent() {
     `;
     if (query.documentType) leftMenuContent.appendChild(f);
 
-    const d = document.createElement('div');
-    d.innerHTML = `
+    const dAfter = document.createElement('div');
+    dAfter.innerHTML = `
         <h5 style="font-size: 20px; margin: 20px 0px 10px 20px">Publish after :</h5>
         <hr style="width:90%; margin: auto">
         <div style='padding:10px'></div>
-        <span style="background: #1F1F1F; padding: 5px 10px; margin: 40px 10px; border-radius: 20px">${query.date}</span>
+        <span style="background: #1F1F1F; padding: 5px 10px; margin: 40px 10px; border-radius: 20px">${query.date.after}</span>
     `;
-    if (query.date) leftMenuContent.appendChild(d);
+    if (query.date.after) leftMenuContent.appendChild(dAfter);
+
+    const dBefore = document.createElement('div');
+    dBefore.innerHTML = `
+        <h5 style="font-size: 20px; margin: 20px 0px 10px 20px">Publish after :</h5>
+        <hr style="width:90%; margin: auto">
+        <div style='padding:10px'></div>
+        <span style="background: #1F1F1F; padding: 5px 10px; margin: 40px 10px; border-radius: 20px">${query.date.before}</span>
+    `;
+    if (query.date.before) leftMenuContent.appendChild(dBefore);
 
     // Ajoutez l'écouteur d'événement ici pour appeler updateLeftMenuContent lorsque l'image est cliquée
     document.getElementById('refreshIcon').addEventListener('click', updateLeftMenuContent);

@@ -90,15 +90,25 @@ function updateForm (data) {
     `;
     updateFormulare.appendChild(ressourceTypeImput);
 
-    const publishDateImput = document.createElement('div');
-    publishDateImput.id = `publishDateImput`;
-    publishDateImput.innerHTML = `
+    const publishAfterDateImput = document.createElement('div');
+    publishAfterDateImput.id = `publishDateImput`;
+    publishAfterDateImput.innerHTML = `
         <div class="etape" id="etape4">
-            <label>Publication date</label><br>
-            <input type="date" id="pubDateImput" name="pubDateOnUpdate" value="${data.date}">
+            <label>Publication after date</label><br>
+            <input type="date" id="pubDateImput" name="pubAfterDateOnUpdate" value="${data.date.after}">
         </div>
     `;
-    updateFormulare.appendChild(publishDateImput);
+    updateFormulare.appendChild(publishAfterDateImput);
+
+    const publishBeforeDateImput = document.createElement('div');
+    publishBeforeDateImput.id = `publishDateImput`;
+    publishBeforeDateImput.innerHTML = `
+        <div class="etape" id="etape4">
+            <label>Publication after date</label><br>
+            <input type="date" id="pubDateImput" name="pubBeforeDateOnUpdate" value="${data.date.before}">
+        </div>
+    `;
+    updateFormulare.appendChild(publishBeforeDateImput);
 
     popupContent.appendChild(updateFormulare);
 
@@ -143,9 +153,14 @@ function updateForm (data) {
         });
     });
 
-    updateFormulare.elements['pubDateOnUpdate'].addEventListener('change', (event) => {
-        const value = event.target.value;
-        queryUpdated.date = value;
+    updateFormulare.elements['pubAfterDateOnUpdate'].addEventListener('change', (event) => {
+        const value = new Date(event.target.value)
+        queryUpdated.date.before = value.toISOString().split('T')[0];
+    });
+
+    updateFormulare.elements['pubBeforeDateOnUpdate'].addEventListener('change', (event) => {
+        const value = new Date(event.target.value)
+        queryUpdated.date.before = value.toISOString().split('T')[0];
     });
 
     const research = document.getElementById('actionResearch');

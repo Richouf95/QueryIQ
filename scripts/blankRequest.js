@@ -68,14 +68,17 @@ const submit = document.getElementById('headerSubmitBtn');
 const userPrompt = document.getElementById('userPrompt');
 
 export let query = {
-    keyWord: {query: "", casse: false},
-    onSite: "",
-    documentType: "",
-    date: ""
+    keyWord: {query: null, casse: false},
+    onSite: null,
+    documentType: null,
+    date: {
+        after: null,
+        before: null
+    }
 }
 
 function formatPrompt (data) {
-    let prompt = `${data.keyWord.query && data.keyWord.casse ? `intext:"${data.keyWord.query}"` : `intext:${data.keyWord.query}`} ${data.onSite && `site:${data.onSite}`} ${data.documentType && `filetype:${data.documentType}`} ${data.date && `after:${data.date}`}`;
+    let prompt = `${data.keyWord.query != null | false ? data.keyWord.casse == true ? `intext:"${data.keyWord.query}"` : `intext:${data.keyWord.query}` : ""} ${data.onSite != null | false ? `site:${data.onSite}` : ""} ${data.documentType != null | false ? `filetype:${data.documentType}` : ""} ${data.date.after != null | false ? `after:${data.date.after}` : ""} ${data.date.before != null | false ? `before:${data.date.before}` : ""}`;
     userPrompt.value = prompt
 }
 
@@ -114,9 +117,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    form.elements['pubDate'].addEventListener('change', (event) => {
-        const value = event.target.value;
-        query.date = value;
+    form.elements['pubDateAfter'].addEventListener('change', (event) => {
+        const value = new Date(event.target.value)
+        query.date.after = value.toISOString().split('T')[0];
+        console.log(query)
+        formatPrompt(query)
+    });
+
+    form.elements['pubDateBefore'].addEventListener('change', (event) => {
+        const value = new Date(event.target.value)
+        query.date.before = value.toISOString().split('T')[0];
+        console.log(query)
         formatPrompt(query)
     });
 });
@@ -139,20 +150,16 @@ export function submitSearch (queryId, newData) {
             })
             localStorage.removeItem('queryiq');
             localStorage.setItem('queryiq', JSON.stringify(old));
+            let prompt = `${newData.keyWord.query != null | false ? newData.keyWord.casse == true ? `intext:"${newData.keyWord.query}"` : `intext:${newData.keyWord.query}` : ""} ${newData.onSite != null | false ? `site:${newData.onSite}` : ""} ${newData.documentType != null | false ? `filetype:${newData.documentType}` : ""} ${newData.date.after != null | false ? `after:${newData.date.after}` : ""} ${newData.date.before != null | false ? `before:${newData.date.before}` : ""}`;
+            var url = 'https://www.google.com/search?q=' + encodeURIComponent(prompt);
+            window.open(url, '_blank');
+            return;
         } else {
             localStorage.setItem('queryiq', JSON.stringify([...old, q]));
+            var url = 'https://www.google.com/search?q=' + encodeURIComponent(userPrompt.value);
+            window.open(url, '_blank');
         }
     }
-
-    var motCle = 'site:codeloccol.org';
-    if (newData) {
-        let prompt = `${data.keyWord.query && data.keyWord.casse ? `intext:"${data.keyWord.query}"` : `intext:${data.keyWord.query}`} ${newData.onSite && `site:${newData.onSite}`} ${newData.documentType && `filetype:${newData.documentType}`} ${newData.date && `after:${newData.date}`}`;
-        var url = 'https://www.google.com/search?q=' + encodeURIComponent(prompt);
-        window.open(url, '_blank');
-        return;
-    }
-    var url = 'https://www.google.com/search?q=' + encodeURIComponent(userPrompt.value);
-    window.open(url, '_blank');
 }
 
 submit.addEventListener('click', () => submitSearch());

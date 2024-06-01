@@ -4,6 +4,10 @@ main {
     display: flex;
 }
 
+a {
+    color: white;
+}
+
 #main-container {
     background-color: #303134;
     height: 95%;
