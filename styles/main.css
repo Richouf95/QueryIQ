@@ -4,6 +4,34 @@
     justify-content: center;
 }
 
+.vibrate {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: vibrate 1.2s infinite;
+}
+
+@keyframes vibrate {
+    0% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(2px, 2px);
+    }
+    50% {
+        transform: translate(0);
+    }
+    75% {
+        transform: translate(-2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
 #grosTitre {
     text-align: center;
     font-size: 4rem;
@@ -20,7 +48,7 @@
     padding: 10px 20px;
     width: 230px;
     justify-content: center;
-    margin: auto;
+    margin: 20px;
     margin-bottom: 20px;
     background-color: #303134;
     color: white;
@@ -86,4 +114,15 @@
 
 #paramDescription {
     width: 500px;
+}
+
+#objectif {
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 50px;
+    padding: 50px 20px;
+    border-left: 5px solid #333;
+    background-color: #f9f9f9;
+    width: 500px;
+    margin: auto;
 }

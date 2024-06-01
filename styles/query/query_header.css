@@ -42,3 +42,31 @@ header input::placeholder {
     width: 150px;
     background-color: rgb(212, 212, 61);
 }
+
+.vibrate {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: vibrate 1.2s infinite;
+}
+
+@keyframes vibrate {
+    0% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(2px, 2px);
+    }
+    50% {
+        transform: translate(0);
+    }
+    75% {
+        transform: translate(-2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}

@@ -5,6 +5,7 @@
 
 header {
     background-color: #303134;
+    display: flex;
 }
 
 header div {
@@ -12,6 +13,7 @@ header div {
     height: 60px;
     margin: auto;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     color: white;
     text-decoration: none
