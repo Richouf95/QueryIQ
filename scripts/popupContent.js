@@ -95,7 +95,7 @@ function updateForm (data) {
     publishAfterDateImput.innerHTML = `
         <div class="etape" id="etape4">
             <label>Publication after date</label><br>
-            <input type="date" id="pubDateImput" name="pubAfterDateOnUpdate" value="${data.date.after}">
+            <input type="date" id="pubDateImput" name="pubAfterDateOnUpdate" value="${data.date.after ? data.date.after : ""}">
         </div>
     `;
     updateFormulare.appendChild(publishAfterDateImput);
@@ -104,8 +104,8 @@ function updateForm (data) {
     publishBeforeDateImput.id = `publishDateImput`;
     publishBeforeDateImput.innerHTML = `
         <div class="etape" id="etape4">
-            <label>Publication after date</label><br>
-            <input type="date" id="pubDateImput" name="pubBeforeDateOnUpdate" value="${data.date.before}">
+            <label>Publication before date</label><br>
+            <input type="date" id="pubDateImput" name="pubBeforeDateOnUpdate" value="${data.date.before ? data.date.before : ""}">
         </div>
     `;
     updateFormulare.appendChild(publishBeforeDateImput);
@@ -227,14 +227,23 @@ export function historyContent(data) {
     `;
     if (history.documentType) popupContent.appendChild(f);
 
-    const d = document.createElement('div');
-    d.innerHTML = `
+    const dAfter = document.createElement('div');
+    dAfter.innerHTML = `
         <h5 style="font-size: 20px; margin: 20px 0px 10px 20px; color: black"">Publish after :</h5>
         <hr style="width:90%; margin: auto">
         <div style='padding:10px'></div>
-        <span style="background: #1F1F1F; padding: 5px 10px; margin: 40px 35px; border-radius: 20px">${history.date}</span>
+        <span style="background: #1F1F1F; padding: 5px 10px; margin: 40px 35px; border-radius: 20px">${history.date.after}</span>
     `;
-    if (history.date) popupContent.appendChild(d);
+
+    const dBefore = document.createElement('div');
+    dBefore.innerHTML = `
+        <h5 style="font-size: 20px; margin: 20px 0px 10px 20px; color: black"">Publish before :</h5>
+        <hr style="width:90%; margin: auto">
+        <div style='padding:10px'></div>
+        <span style="background: #1F1F1F; padding: 5px 10px; margin: 40px 35px; border-radius: 20px">${history.date.before}</span>
+    `;
+    history.date.after && popupContent.appendChild(dAfter);
+    history.date.before && popupContent.appendChild(dBefore);
 
     const divAction = document.createElement('div');
     divAction.id = "divAction";
@@ -248,6 +257,13 @@ export function historyContent(data) {
     darkBackground.appendChild(popupContent);
 
     document.body.appendChild(darkBackground);
+
+    const research = document.getElementById('actionResearch');
+    research.addEventListener('click', () => {
+        submitSearch("", history);
+        const popUp = document.getElementById('darkBackground');
+        if (popUp != null) popUp.parentNode.removeChild(popUp);
+    })
 
     const bt = document.getElementById('actionUpdate');
     bt.addEventListener('click', () => updateForm(history))
