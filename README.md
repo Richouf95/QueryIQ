@@ -22,6 +22,8 @@ QueryIQ is an intuitive web application designed to improve the efficiency and a
 
 3. Open index.html in your browser to launch the application.
 
+4. Live demo : <[Live demo](https://query-iq.vercel.app/)>
+
 ## Use
 
 ### Enter a query
@@ -55,4 +57,10 @@ Fork the project.
 
 ## Contact
 
-Pour toute question ou suggestion, veuillez contacter <wourichouf95@gmail.com>
+If you have any questions or suggestions, please contact <wourichouf95@gmail.com>
+
+## Author
+
+- Abdoulaye Wouri Chouf
+  - LinkedIn: [wourichouf](https://www.linkedin.com/in/wourichouf/)
+  - Twitter: [@johndoe](https://x.com/wourichouf)
