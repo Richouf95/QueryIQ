@@ -22,7 +22,7 @@ QueryIQ is an intuitive web application designed to improve the efficiency and a
 
 3. Open index.html in your browser to launch the application.
 
-4. Live demo : <[Live demo](https://query-iq.vercel.app/)>
+4. Live demo : <[QueryIQ](https://query-iq.vercel.app/)>
 
 ## Use
 
