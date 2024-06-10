@@ -63,4 +63,4 @@ If you have any questions or suggestions, please contact <wourichouf95@gmail.com
 
 - Abdoulaye Wouri Chouf
   - LinkedIn: [wourichouf](https://www.linkedin.com/in/wourichouf/)
-  - Twitter: [@johndoe](https://x.com/wourichouf)
+  - Twitter: [@wourichouf](https://x.com/wourichouf)
